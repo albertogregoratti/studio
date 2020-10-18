@@ -1,0 +1,132 @@
+Ref: https://git-scm.com/book/en/v2/
+
+What's git
+- Keep track of all files in a project and Record any changes
+- Restore previous versions of files
+- Merge code from different computers and different team members
+
+
+Initialise git
+git config --global user.name "Your Name"
+git config --global user.mail "your e-mail"
+
+Check config
+git config --list
+git config user.name
+
+Help 
+git help
+git help commit
+
+Bash navigation essentials
+pwd = current directory
+ls 	= list folders/files
+ls -la = list hidden files
+cd .. = move 1 level down
+cd /c/dir/ = change to directory c:\dir
+touch filename	= create a file
+clear =clear the screen
+
+Initialise a repository
+We can obtain a Git repository in one of two ways:
+1. You can take a local directory that is currently not under version control, and turn it into a Git repository, or
+2. You can clone an existing Git repository from elsewhere.
+
+First we need to create a local repository in the project's root directory (folder). Afterwards, Git can track project files and directories and add them to the repository. 
+Technically a repository is just a (hidden) directory in the project's root directory.
+
+git init = initialise a repository from a folder (empty or not: if files are present, add and commit)
+
+Add and Commit files
+If you want to start version-controlling existing files (as opposed to an empty directory), you should probably begin tracking those files and do an initial commit. You can accomplish that with a few git add commands that specify the files you want to track, followed by a git commit.
+
+Add and Commit change a file status (= moving to a different logical area)
+Working Area --> Staging Area --> Repository
+When you move files to the staging area, you actually gather and prepare files for Git before committing them to the local repository.
+
+git add . = add all to the staging area
+git add --all = add all files within any sub folder in the project folder
+git add filename = add a file to the staging area
+git commit -m "message" = add a file to the repository (take a snapshot of the file)
+A commit to a repository is a snapshot of the current state of the project's root directory.
+
+git commit -am "message" = shortcut to commit straight to repo from working area. Attention: it moves everything from working to repo
+
+Log
+Git creates a history of your commits.
+
+git log = commit full history
+git log -5 = log of the latest 5 commit
+git log --since="2020-02-18 00:00"  
+git log --since="2020-02-18 00:00" --format="medium"
+git log --author="alberto" = shows the commit history for user "alberto"
+
+Differences
+git diff = shows differences between a file in the repo and the working copy (in red what in the repo, in green what in the working copy)
+git diff --staged = compares files in staging area with repo
+
+
+Getting previous versions from Repo
+Overwrite a file in working area with the copy available in repo
+git checkout [commit number](few chars only) -- filename
+without [commit number] the latest version is taken
+to complete, commit the file 
+
+Unstaging a file from staging area (reset a file from staging)
+git reset HEAD filename
+git reset => to unstage all files from staging
+
+Remove a file 
+from staging: git rm --cached filename
+from repo: git rm filename
+git commit -m "removed f3"
+
+Move and Rename files
+git mv filename newfilename	= rename a file
+git commit -m "renamed file"
+
+git mv filename folder/newfilename = move a file into a subfolder
+git commit -m "moved file into a subfolder"
+
+Local Vs Remote Repositories
+A remote repository serves as a central hub to which members of a development team can connect to access project code.
+Git commands to move (push) your code from a local repository to a remote repository and to grab (pull) your team's collective code from a remote repository.
+
+If you want to get a copy of an existing Git repository the command you need is git clone.
+Every version of every file for the history of the project is pulled down by default when you run git clone. 
+Like git init, cloning is generally a one-time operation. Once a developer has obtained a working copy, all version control operations and collaborations are managed through their local repository.
+
+Git’s collaboration model is based on repository-to-repository interaction: you push or pull commits from one repository to another.
+
+Working with Remote Repositories
+https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes
+
+Link a remote repository
+git remote add origin https://github.com/albertogregoratti/Test.git
+
+We tell Git to "add" a repository. The "origin" option is the default name for the server on which your remote repository is located.
+GitHub can accept now files from our local repository.
+
+Clone a repository
+git clone is primarily used to point to an existing repo and make a clone or copy of that repo at in a new directory, at another location.
+
+Local repo
+git clone /path/to/repository
+
+Remote repo
+git clone username@host:/path/to/repository 
+
+Pull
+git pull  = Fetch and merge changes on the remote server to your working directory
+
+git diff = to check conflicts
+git add = to mark the changed file
+
+Push
+Send changes to the master branch of remote repository
+git push origin master
+git push --tags origin	= push all tags to remote repo
+
+Tags
+git tag 1.00 <commitID> = tagging can be used to mark a significant changeset like a realease
+
