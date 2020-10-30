@@ -1,7 +1,8 @@
 #********************************
 # Data Structures
 #********************************
-# Lists (lists are mutable). It is the equivalent of an array in other programming languages. It is represented by square brackets
+# Lists (lists are mutable). It is the equivalent of an array in other programming languages.
+# It is represented by square brackets
 
 li = [1, 2, 30, 4]
 print('Element in position 1: ', li[1]) 
@@ -52,9 +53,9 @@ print(di['sec'])   # Accessing a value: it prints the value corresponding to the
 myValue = di.get('sec')
 print('Getting a value using get(): ', myValue)
 
-for k, v in di.items(): print(k, v)     # Looping through all keys and values
+for k, v in di.items(): print('key: ', k, ' - value: ',v)     # Looping through all keys and values
     
-for k, v in di.items(): print(v)        # Looping through all values
+for k, v in di.items(): print('value: ',v)        # Looping through all values
     
 # Dictionaries can be built using the dictionary constructor
 di1 = dict(first = 1, sec = 2, third = 3)
@@ -63,5 +64,5 @@ for k in di1.keys(): print(k)
 for v in di1.values(): print(v)
 for k, v in di1.items(): print(k, v)
 
-# Set (like a list but doesn't allow duplicates and are unordered
+# Set (it's like a list but doesn't allow duplicates and are unordered
 s = {1, 3, 5}

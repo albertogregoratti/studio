@@ -6,12 +6,12 @@ import os           # Doc @: https://www.geeksforgeeks.org/os-module-python-exam
 from os import path # The OS module in python provides functions for interacting with the operating system
 import shutil       # Doc @: https://www.guru99.com/python-copy-file.html
 import time
-
-infile = open('text_test1.txt', 'r')    # The Open function returns a file object. It takes a file name and returns an object
-outfile = open('text_test2.txt', 'wt')
+'''
+infile = open('data/text_test1.txt', 'r')    # The Open function returns a file object. It takes a file name and returns an object
+outfile = open('data/text_test2.txt', 'wt')
 # r = read, w = write (creates a file if it does not exist), a = append mode (creates a file if it does not exist)
 
-# print(infile.read())    # The read method returns the whole content of a file
+#print(infile.read())    # The read method returns the whole content of a file
 
 for line in infile:     # We can get one line at time instead of the full file in memory
     print(line)
@@ -23,7 +23,7 @@ outfile.close()
 infile.close()
 print('It\'s done')
 
-
+'''
 # Reading a Json file
 
 file_fd_credentials = 'C:/Dev/fd/fd_credentials.json'
@@ -42,7 +42,7 @@ domain = obj['domain']
 password = obj['password']
 
 print('key: {} domain: {} password: {} '.format(api_key, domain, password))
-    
+
 # os.path useful functions
 print('Current directory:', os.getcwd())    # Current working directory
 myFile = 'text_test1.txt'
