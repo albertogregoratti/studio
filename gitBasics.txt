@@ -30,12 +30,13 @@ clear =clear the screen
 Initialise a repository
 We can obtain a Git repository in one of two ways:
 1. You can take a local directory that is currently not under version control, and turn it into a Git repository, or
-2. You can clone an existing Git repository from elsewhere.
+2. You can clone (copy) an existing Git repository from elsewhere into a new directory. The git clone command initializes a new Git repo on your local machine.
 
 First we need to create a local repository in the project's root directory (folder). Afterwards, Git can track project files and directories and add them to the repository. 
-Technically a repository is just a (hidden) directory in the project's root directory.
+Technically a repository is just a (hidden) directory in the project's root directory. 
 
 git init = initialise a repository from a folder (empty or not: if files are present, add and commit)
+git clone <repository> <directory> clones a repository at <repo> into a local folder called <directory> [git clone https://github.com/ag/studio.git /home/al/dev/projects/]
 
 Add and Commit files
 If you want to start version-controlling existing files (as opposed to an empty directory), you should probably begin tracking those files and do an initial commit. You can accomplish that with a few git add commands that specify the files you want to track, followed by a git commit.
@@ -78,7 +79,8 @@ git reset => to unstage all files from staging
 
 Remove a file 
 from staging: git rm --cached filename
-from repo: git rm filename
+from repo: 
+git rm filename
 git commit -m "removed f3"
 
 Move and Rename files
