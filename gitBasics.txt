@@ -1,4 +1,4 @@
-Ref: https://git-scm.com/book/en/v2/
+﻿Ref: https://git-scm.com/book/en/v2/
 
 What's git
 - Keep track of all files in a project and Record any changes
@@ -47,7 +47,7 @@ When you move files to the staging area, you actually gather and prepare files f
 git add . = add all to the staging area
 git add --all = add all files within any sub folder in the project folder
 git add filename = add a file to the staging area
-git commit -m "message" = add a file to the repository (take a snapshot of the file)
+git commit -m "message" = add a file to the repository (taking a snapshot of the file)
 A commit to a repository is a snapshot of the current state of the project's root directory.
 
 git commit -am "message" = shortcut to commit straight to repo from working area. Attention: it moves everything from working to repo
