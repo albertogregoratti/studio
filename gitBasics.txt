@@ -1,4 +1,5 @@
-﻿Ref: https://git-scm.com/book/en/v2/
+﻿Ref:    https://git-scm.com/book/en/v2/
+        https://www.w3docs.com
 
 What's git
 - Keep track of all files in a project and Record any changes
@@ -53,11 +54,13 @@ A commit to a repository is a snapshot of the current state of the project's roo
 
 git commit -am "message" = shortcut to commit straight to repo from working area. Attention: it moves everything from working to repo
 
-Log
+Log [https://www.w3docs.com/learn-git/git-log.html]
 Git creates a history of your commits.
 
 git log = commit full history
 git log -5 = log of the latest 5 commit
+git log <file> = displays commits related to a file
+git log -p = detailed log with diff
 git log --since="2020-02-18 00:00"  
 git log --since="2020-02-18 00:00" --format="medium"
 git log --author="alberto" = shows the commit history for user "alberto"
@@ -67,8 +70,9 @@ git diff = shows differences between a file in the repo and the working copy (in
 git diff --staged = compares files in staging area with repo
 
 
-Getting previous versions from Repo
+Getting previous versions from Repo [https://www.w3docs.com/learn-git/undoing-changes-and-commits.html]
 Overwrite a file in working area with the copy available in repo
+git checkout master
 git checkout [commit number](few chars only) -- filename
 without [commit number] the latest version is taken
 to complete, commit the file 
@@ -89,6 +93,7 @@ git commit -m "renamed file"
 
 git mv filename folder/newfilename = move a file into a subfolder
 git commit -m "moved file into a subfolder"
+
 
 Local Vs Remote Repositories
 A remote repository serves as a central hub to which members of a development team can connect to access project code.
@@ -135,3 +140,7 @@ git push --tags origin	= push all tags to remote repo
 Tags
 git tag 1.00 <commitID> = tagging can be used to mark a significant changeset like a realease
 
+Working with Branches
+
+Comparing branches
+git diff branch1..branch2
