@@ -118,6 +118,9 @@ git clone /path/to/repository
 Remote repo
 git clone username@host:/path/to/repository 
 
+Showing Remote Repos
+git remote -v
+
 Pull
 git pull  = Fetch and merge changes on the remote server to your working directory
 
