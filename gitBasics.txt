@@ -23,6 +23,7 @@ Bash navigation essentials
 pwd = current directory
 ls 	= list folders/files
 ls -la = list hidden files
+mkdir = create a directory
 cd .. = move 1 level down
 cd /c/dir/ = change to directory c:\dir
 touch filename	= create a file
@@ -109,7 +110,9 @@ Working with Remote Repositories
 https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes
 
 Link a remote repository
-git remote add origin https://github.com/albertogregoratti/Test.git
+1. Create a new repo in gitHub: https://github.com/new
+2. Use git remote add origin to add the gitHub repo address
+   git remote add origin https://github.com/albertogregoratti/Test.git
 
 We tell Git to "add" a repository. The "origin" option is the default name for the server on which your remote repository is located.
 GitHub can accept now files from our local repository.
