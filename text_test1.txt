@@ -1,0 +1,3 @@
+Gli stessi comandi seguiti da hide rimuovono i risultati del comando. Per
+verificare il funzionamento di questi comandi si copi il codice della figura
+e poi continua

@@ -1,0 +1,4 @@
+Installing packages using pip
+1. Move to C:\Pythonxy\Scripts and run: pip install --upgrade pip to upgrade pip
+2. Install the package: pip install packageName
+3. Double check where the package has been installed: pip show packageName
