@@ -32,7 +32,9 @@ clear =clear the screen
 Initialise a repository
 We can obtain a Git repository in one of two ways:
 1. You can take a local directory that is currently not under version control, and turn it into a Git repository, or
-2. You can clone (copy) an existing Git repository from elsewhere into a new directory. The git clone command initializes a new Git repo on your local machine.
+2. You can clone (copy) an existing Git repository from elsewhere into a new directory.
+The git clone command initializes a new Git repo on your local machine.
+Ex: git clone https://github.com/albertogregoratti/dbt.git
 
 First we need to create a local repository in the project's root directory (folder). Afterwards, Git can track project files and directories and add them to the repository. 
 Technically a repository is just a (hidden) directory in the project's root directory. 

@@ -6,6 +6,7 @@ import os           # Doc @: https://www.geeksforgeeks.org/os-module-python-exam
 from os import path # The OS module in python provides functions for interacting with the operating system
 import shutil       # Doc @: https://www.guru99.com/python-copy-file.html
 import time
+import csv
 
 #################################################
 # Reading a txt file
@@ -85,3 +86,18 @@ print('Created backup-file: \'', backup_file, '\'')
 
 ft = time.ctime(path.getmtime('text_test1.txt'))    # Get modification time of a file
 print('File time: ', ft)
+
+###############################################################################
+## Reading a csv file
+# There are two ways to read data from a CSV file using csv.
+# csv.Reader(), allows you to access CSV data using indexes and is ideal for simple CSV files.
+# csv.DictReader(), easy to use, especially when working with large CSV files.
+
+file_in = 'C:/Temp/looker_user_email.txt'
+
+def read_users2():
+    f = open(file_in, 'r')
+    csv_reader = csv.reader(f, delimiter=',')
+    for row in csv_reader: print(row[2])
+
+read_users2()
