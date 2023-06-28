@@ -1,3 +1,4 @@
+# # https://realpython.com/python-exceptions/
 # File path: use forward slashes
 file_fd_credentials_f = 'C:/Dev/fd/fd_credentials.json'
 

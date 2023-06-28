@@ -1,3 +1,5 @@
+# https://realpython.com/python-exceptions/
+
 # Infinite Loop
 #while True:
 #    print('This is an infinite loop')
