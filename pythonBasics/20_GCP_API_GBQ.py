@@ -3,7 +3,7 @@ from google.oauth2 import service_account
 
 project_id = 'usage-data-reporting' # when authenticating using an explicit method, the project id is provided by the json file
 dataset_id = 'PROD_IFM_Usage'
-key_path = 'C:/Dev/bq/Usage_Reporting_key/usage-data-reporting-0192446b1bb9.json'   # File containing GCP key
+key_path = 'C:/Dev/bq/Usage_Reporting_key/usage-data-reporting-3dd6a008b5ae.json'   # File containing GCP key
 
 query = """
 SELECT  Calendar_Year, Calendar_Year_Month, Platform, Sum(Downloads) As Download, Sum(Denials) As Denials, Sum(Clicks) As Total
