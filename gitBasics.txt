@@ -24,10 +24,13 @@ pwd = current directory
 ls 	= list folders/files
 ls -la = list hidden files
 mkdir = create a directory
+rm -r = deletes non-empty directories
+rm -d = removes empty directories
 cd .. = move 1 level down
 cd /c/dir/ = change to directory c:\dir
 touch filename	= create a file
 clear =clear the screen
+Q key to exit in case of (END)
 
 Initialise a repository
 We can obtain a Git repository in one of two ways:
@@ -53,20 +56,27 @@ git add . = add all to the staging area
 git add --all = add all files within any sub folder in the project folder
 git add filename = add a file to the staging area
 git commit -m "message" = add a file to the repository (taking a snapshot of the file)
+git commit -m "messaage" -- file1 file2
 A commit to a repository is a snapshot of the current state of the project's root directory.
 
 git commit -am "message" = shortcut to commit straight to repo from working area. Attention: it moves everything from working to repo
 
-Log [https://www.w3docs.com/learn-git/git-log.html]
+Log
+https://www.w3docs.com/learn-git/git-log.html
+https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History
+
 Git creates a history of your commits.
 
 git log = commit full history
+git log --oneline --decorate  --graph
 git log -5 = log of the latest 5 commit
 git log <file> = displays commits related to a file
 git log -p = detailed log with diff
 git log --since="2020-02-18 00:00"  
 git log --since="2020-02-18 00:00" --format="medium"
 git log --author="alberto" = shows the commit history for user "alberto"
+git log --pretty=format:"%h %s" --graph
+
 
 Differences
 git diff = shows differences between a file in the repo and the working copy (in red what in the repo, in green what in the working copy)
@@ -76,7 +86,7 @@ git diff --staged = compares files in staging area with repo
 Getting previous versions from Repo [https://www.w3docs.com/learn-git/undoing-changes-and-commits.html]
 Overwrite a file in working area with the copy available in repo
 git checkout master
-git checkout [commit number](few chars only) -- filename
+git checkout commit number -- filename
 without [commit number] the latest version is taken
 to complete, commit the file 
 
@@ -97,14 +107,83 @@ git commit -m "renamed file"
 git mv filename folder/newfilename = move a file into a subfolder
 git commit -m "moved file into a subfolder"
 
+Tags
+https://git-scm.com/book/en/v2/Git-Basics-Tagging
+Git has the ability to tag specific points in a repository’s history as being important (like a release)
+git tag 1.00 <commitID> = tagging can be used to mark a significant changeset like a realease
 
+Working with Branches
+https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell
+
+Branching is a way to manage different versions of your code, and acts as a pointer to a snapshot of your changes.
+Git does store data as a series of snapshots (not changes/delta).
+If you make some changes and commit again, the next commit stores a pointer to the commit that came immediately before it.
+A branch in Git is simply a lightweight movable pointer to one of these commits.
+The default branch name in Git is master. As you start making commits,
+you’re given a master branch that points to the last commit you made.
+Every time you commit, the master branch pointer moves forward automatically.
+
+Create a new branch
+Let’s say you want to create a new branch called testing. You do this with the git branch command:
+
+$ git branch testing
+
+Branches are isolated spaces to experiment and test new code without affecting the code in the main branch.
+This creates a new pointer to the same commit you're currently on.
+At this moment, both master and testing are pointing to the latest commit.
+How does Git know what branch you’re currently on? It keeps a special pointer called HEAD.
+At this moment HEAD is still pointing to master
+
+Attention: the git branch command only created a new branch, it didn’t switch to that branch.
+To switch to an existing branch, you run the git checkout command
+$ git checkout testing
+Now HEAD points to testing. Any new commit will create a new snapshot on the testing branch with HEAD pointing on it.
+The master branch still points to the commit you were on when you ran git checkout to switch branches.
+
+To switch back to master
+$ git checkout master
+now HEAD points to master.
+Note: testing branch doesn't appear in the log: to show the full commit history
+$ git log testing
+$ git log --all
+
+When checking out to master, git reverted the files in your working directory back to the snapshot that master points to.
+It’s important to note that when you switch branches in Git, files in your working directory will change.
+
+Comparing branches
+git diff branch1..branch2
+
+Merging branches
+https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
+
+Say we have a hotfix to apply:
+1. create a new branch called hotfix
+2. checkout hotfix and apply the changes required
+3. checkout master and run $ git merge hotfix
+Since hotfix was a branch directly ahead of master, git simply moves the pointer forward (to the latest commit pointed by hotfix) = Fast-Forward
+
+Since we have both master and hotfix pointing to the same commit, it's good practice to remove hotfix running:
+$ git branch -d hotfix
+
+When we need merging a branch with a development history that diverged git does use a recursive strategy.
+
+Branch management
+https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
+
+To get a full list of branches:
+$ git branch
+A * indicates the branch where the HEAD points to.
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 Local Vs Remote Repositories
-A remote repository serves as a central hub to which members of a development team can connect to access project code.
+A remote repository serves as a central hub to which members of a development team can connect to access the project code.
 Git commands to move (push) your code from a local repository to a remote repository and to grab (pull) your team's collective code from a remote repository.
 
 If you want to get a copy of an existing Git repository the command you need is git clone.
-Every version of every file for the history of the project is pulled down by default when you run git clone. 
-Like git init, cloning is generally a one-time operation. Once a developer has obtained a working copy, all version control operations and collaborations are managed through their local repository.
+Every version of every file for the history of the project is pulled down by default when you run git clone.
+Like git init, cloning is generally a one-time operation. Once a developer has obtained a working copy,
+all version control operations and collaborations are managed through their local repository.
 
 Git’s collaboration model is based on repository-to-repository interaction: you push or pull commits from one repository to another.
 
@@ -116,6 +195,7 @@ Link a remote repository
 2. Use git remote add origin to add the gitHub repo address
    git remote add origin https://github.com/albertogregoratti/Test.git
 
+The default name of a remote repository is origin.
 We tell Git to "add" a repository. The "origin" option is the default name for the server on which your remote repository is located.
 GitHub can accept now files from our local repository.
 
@@ -126,10 +206,19 @@ Local repo
 git clone /path/to/repository
 
 Remote repo
-git clone username@host:/path/to/repository 
+git clone username@host:/path/to/repository
+
+Adding Remote Repositories
+git clone command implicitly adds the origin remote for you.
+To add a new remote Git repository explicitly as a shortname you can reference easily, run:
+git remote add <shortname> <url>
 
 Showing Remote Repos
+If you’ve cloned your repository, you should at least see origin
+that is the default name Git gives to the server you cloned from.
+
 git remote -v
+git remote show origin
 
 Pull
 git pull  = Fetch and merge changes on the remote server to your working directory
@@ -137,15 +226,40 @@ git pull  = Fetch and merge changes on the remote server to your working directo
 git diff = to check conflicts
 git add = to mark the changed file
 
+Fetch
+https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
+
+git fetch <remote>
+The fetch command only downloads the data to your local repository, it doesn’t automatically merge it.
+You have to merge it manually into your work when you’re ready.
+
+git pull
+It's essentially a git fetch immediately followed by a git merge
+
 Push
 Send changes to the master branch of remote repository
+git push <remote> <branch>
+If you want to push your master branch to your origin server:
 git push origin master
 git push --tags origin	= push all tags to remote repo
 
-Tags
-git tag 1.00 <commitID> = tagging can be used to mark a significant changeset like a realease
+Note: This command works only if you cloned from a server to which you have write access and
+if nobody has pushed in the meantime. If you and someone else clone at the same time and
+they push upstream and then you push upstream, your push will rightly be rejected.
+You’ll have to fetch their work first and incorporate it into yours before you’ll be allowed to push.
 
-Working with Branches
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+How to Reset A Local Git Branch to Remote?
+https://www.freecodecamp.org/news/git-reset-origin-how-to-reset-a-local-branch-to-remote-tracking-branch/
 
-Comparing branches
-git diff branch1..branch2
+If you need to fetch the latest changes from the remote repository to be up to date with your local branch:
+1. Save the current state of your local branch (optional).
+2. Fetch the latest version of the code from the remote.
+3. Reset the local branch.
+
+1.  Optional: git branch backup_work
+2.  git checkout main
+    git fetch origin
+3.  git reset --hard origin/main
+
