@@ -56,7 +56,7 @@ git add . = add all to the staging area
 git add --all = add all files within any sub folder in the project folder
 git add filename = add a file to the staging area
 git commit -m "message" = add a file to the repository (taking a snapshot of the file)
-git commit -m "messaage" -- file1 file2
+git commit -m "message" -- file1 file2
 A commit to a repository is a snapshot of the current state of the project's root directory.
 
 git commit -am "message" = shortcut to commit straight to repo from working area. Attention: it moves everything from working to repo
