@@ -248,6 +248,19 @@ if nobody has pushed in the meantime. If you and someone else clone at the same 
 they push upstream and then you push upstream, your push will rightly be rejected.
 You’ll have to fetch their work first and incorporate it into yours before you’ll be allowed to push.
 
+How to create a Pull request
+doc: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
+
+Create a pull request to propose a change to a repository.
+When thinking about branches, remember that the base branch is where changes should be applied,
+the head branch contains what you would like to be applied.
+1. On GitHub.com, navigate to the main page of the repository;
+2. In the "Branch" menu, choose the branch that contains your commits;
+3. Above the list of files, in the yellow banner, click Compare & pull request to create a pull request for the associated branch;
+4. Use the base branch dropdown menu to select the branch you'd like to merge your changes into,
+then use the compare branch drop-down menu to choose the topic branch you made your changes;
+5. Type a title and description for your pull request;
+6. To create a pull request that is ready for review, click Create Pull Request.
 ------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------
 How to Reset A Local Git Branch to Remote?
@@ -261,4 +274,6 @@ If you need to fetch the latest changes from the remote repository to be up to d
 1.  Optional: git branch backup_work
 2.  git checkout main
     git fetch origin
-3.  git reset --hard origin/main
+3.  git reset --hard origin/master
+
+
