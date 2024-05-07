@@ -6,9 +6,9 @@ dataset_id = 'PROD_IFM_Usage'
 key_path = 'C:/Dev/bq/Usage_Reporting_key/usage-data-reporting-3dd6a008b5ae.json'   # File containing GCP key
 
 query = """
-SELECT  Calendar_Year, Calendar_Year_Month, Platform, Sum(Downloads) As Download, Sum(Denials) As Denials, Sum(Clicks) As Total
-FROM `usage-data-reporting.PROD_IFM_Usage.mv_usage_mat_monthly` 
-WHERE Calendar_Year between 2015 and 2019
+SELECT  Cal_Year, Cal_Year_Month, Platform, Sum(No_lic) As Denials
+FROM `usage-data-reporting.PROD_IFM_Usage_C5.tbl_mat_monthly` 
+WHERE Cal_Date >= '2023-01-01'
 GROUP BY 1, 2, 3
 ORDER BY 3, 1, 2
 """
@@ -17,7 +17,8 @@ ORDER BY 3, 1, 2
 client_ref1 = bigquery.Client.from_service_account_json(key_path)    # Creates a client using the service_account_json credentials
 
 project_ref1 = client_ref1.project    # project id is provided by the json file that contains both credentials and project id
-dataset_ref1 = client_ref1.dataset(dataset_id)
+
+client_ref2 = bigquery.Client.
 
 print('project: ', project_ref1)
 print('executing query...')

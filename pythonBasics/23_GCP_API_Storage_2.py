@@ -8,19 +8,19 @@ from pathlib import Path
 # Environment variables
 # ***********************************************************************************
 
-# Set GCP Credentials
+# Set GCP SA credentials
 key_path = 'C:/Dev/fd/bi-team-189611-c78f094e47ef.json'
+# key_path = 'C:/Dev/bq/bi_team_key/bi-team-189611-bq_studio.json'
 
-# Creates a client
+# Create a google cloud storage client
 gs_client = storage.Client.from_service_account_json(key_path)
-# project_ref = gs_client.project_id
 
 # Set a target
-storage_bucket_id = 'freshdesk_gbq'	# Bucket
+target_bucket = 'freshdesk_gbq'	    # Bucket
 target_folder = 'groups/gbq_in/'    # SubFolder(s) within the bucket
 
 # Get the bucket object
-bucket_ref = gs_client.bucket(storage_bucket_id)
+bucket_ref = gs_client.bucket(target_bucket)
 
 # Set source and target file path/name
 source_folder = Path('C:/Dev/freshdesk/groups/gbq_in')
@@ -39,4 +39,5 @@ blob_target = bucket_ref.blob(target_path)
 
 # Upload the file
 blob_target.upload_from_filename(filename=source_path)
+
 print('Done')
