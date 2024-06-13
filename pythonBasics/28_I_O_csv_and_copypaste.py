@@ -11,7 +11,7 @@ def main():
     try:    # if the file does not exist, it would generate an IOError
         # open the file with playlist
         f = open(file_in, 'r')
-        csv_reader = csv.reader(f, delimiter=',')
+        csv_reader = (f, delimiter=',')
 
         pos = 1000
         for row in csv_reader:
