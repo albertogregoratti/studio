@@ -178,6 +178,7 @@ https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
 To get a full list of branches:
 $ git branch
 A * indicates the branch where the HEAD points to.
+To see the last commit on each branch, you can run git branch -v
 
 ------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------
@@ -277,8 +278,17 @@ If you need to fetch the latest changes from the remote repository to be up to d
 3. Reset the local branch.
 
 1.  Optional: git branch backup_work
-2.  git checkout main
+2.  git checkout master
     git fetch origin
 3.  git reset --hard origin/master
+
+In case of issues, abort the merge first:
+$ git reset --merge
+
+or
+# Reset all the changes back to the last commit.
+# Note: This cannot be reverted!
+$ git reset --hard HEAD
+
 
 

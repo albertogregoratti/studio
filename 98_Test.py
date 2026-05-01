@@ -1,26 +1,39 @@
-from google.cloud import bigquery
+import json
+import requests
 from google.oauth2 import service_account
-import pandas_gbq
-import matplotlib.pyplot as plt
-import numpy as np
-# %matplotlib inline
+from googleapiclient.discovery import build
+from pprint import pprint
 
-dataset_id = 'PROD_IFM_Usage'
-project_id = 'usage-data-reporting'
+# Load your service account credentials from the JSON file
+SERVICE_ACCOUNT_FILE = 'c:/Temp/usage-data-reporting-3a7e2ee0de44.json'
+SCOPES = ['https://www.googleapis.com/auth/datastudio.readonly']
 
-# Set GCP Credentials
-# key_path = 'C:/Dev/bq/Usage_Reporting_key/usage-data-reporting-0192446b1bb9.json'
-client_ref = bigquery.Client.from_service_account_json(key_path)
+# Authenticate using service account credentials
+credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+# credentials = service_account.Credentials(service_account_email='apitest@usage-data-reporting.iam.gserviceaccount.com', scopes=SCOPES)
 
-dataset_ref = client_ref.dataset(dataset_id)
+# Define the API endpoint for assets
+API_ENDPOINT = 'https://datastudio.googleapis.com/v1/assets'
 
-query2 = """
-SELECT  Calendar_Year, Calendar_Year_Month, Platform, Sum(Downloads) As Download, Sum(Denials) As Denials, Sum(Clicks) As Total
-FROM `usage-data-reporting.PROD_IFM_Usage.mv_usage_mat_monthly` 
-WHERE Calendar_Year between 2015 and 2019
-GROUP BY 1, 2, 3
-ORDER BY 3, 1, 2
-"""
-df = pandas_gbq.read_gbq(query2, project_id = project_id, dialect = 'standard')
+# Define the asset ID
+asset_id = '2990cc00-a174-443f-9014-69f6f881cd97'
 
-df.head()
+# Authenticate with service account
+credentials = service_account.Credentials.from_service_account_file(
+    SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+
+# Initialize the Data Studio API client
+datastudio = build('datastudio', 'v1', credentials=credentials)
+# datastudio = build(credentials=credentials)
+
+
+
+# Get asset metadata
+# response = datastudio.assets().get(name=f'assets/{asset_id}').execute()
+response = datastudio.datastudio().assets().list()
+
+# Print metadata
+print("Asset Metadata:")
+print(response)
+
+
