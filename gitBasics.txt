@@ -22,9 +22,7 @@ git help commit
 Bash navigation essentials
 pwd = current directory
 ls 	= lists folders/files
-ls -la = lists hidden files
-ls -1 = lists one file per line
-mkdir = create a directory
+httpsmkdir = create a directory
 rm -r = deletes non-empty directories
 rm -d = removes empty directories
 cd .. = move 1 level down
