@@ -205,18 +205,31 @@ We tell Git to "add" a repository. The "origin" option is the default name for t
 GitHub can accept now files from our local repository.
 
 Clone a repository
-git clone is primarily used to point to an existing repo and make a clone or copy of that repo at in a new directory, at another location.
+git clone is primarily used to point to an existing repo and make a clone or copy of that repo in a new directory,
+or at another location.
 
 Local repo
 git clone /path/to/repository
 
 Remote repo
 git clone username@host:/path/to/repository
+git clone https://github.com/reponame.git
 
-Adding Remote Repositories
-git clone command implicitly adds the origin remote for you.
-To add a new remote Git repository explicitly as a shortname you can reference easily, run:
-git remote add <shortname> <url>
+
+Adding locally hosted code to GitHub
+If you have source code stored locally on your computer that is tracked by Git (or even not tracked)
+you can add the code to GitHub following these steps:
+1. Create a new repository on GitHub
+2. Change the current working directory to your local project
+3. To add the URL of the remote repository on gitHub where your local repository will be pushed, run the following command.
+        git remote add origin https://github.com/albertogregoratti/nanogpt.git
+4. If the local repo was previously cloned, change the URL for origin (keeps the same remote name):
+        git remote set-url origin https://gitbub.com/albertogregoratti/nanogpt.git
+4. To verify that you set the remote URL correctly, run the following command:
+        git remote -v
+5. To push the changes in your local repository to GitHub, run the following command:
+        git push origin master
+
 
 Showing Remote Repos
 If you’ve cloned your repository, you should at least see origin
